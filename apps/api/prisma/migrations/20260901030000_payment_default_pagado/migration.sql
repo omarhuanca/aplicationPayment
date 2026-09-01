@@ -1,0 +1,1 @@
+ALTER TABLE "Payment" ALTER COLUMN "paymentState" SET DEFAULT 'PAGADO';

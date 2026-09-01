@@ -1,0 +1,1 @@
+ALTER TABLE "Company" ALTER COLUMN "address" SET NOT NULL;

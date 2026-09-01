@@ -1,0 +1,1 @@
+ALTER TYPE "Coin" ADD VALUE 'BOB';
