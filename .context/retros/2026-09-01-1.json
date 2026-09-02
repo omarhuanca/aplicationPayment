@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-01",
+  "window": "7d",
+  "note": "Repo was git-initialized today; entire prior build session was squashed into a single root commit. Time-series metrics (sessions, hourly distribution, streaks) are not meaningful with n=1 commit and are omitted rather than fabricated.",
+  "metrics": {
+    "commits": 1,
+    "contributors": 1,
+    "prs_merged": 0,
+    "insertions_total": 16943,
+    "insertions_excl_lockfiles": 3677,
+    "deletions": 0,
+    "net_loc": 3677,
+    "test_loc": 29,
+    "test_files": 1,
+    "migrations_count": 17,
+    "active_days": 1,
+    "focus_pct_web": 0.47,
+    "focus_pct_api_src": 0.28,
+    "focus_pct_prisma": 0.11
+  },
+  "authors": {
+    "Omar Huanca": { "commits": 1, "insertions_excl_lockfiles": 3677, "test_ratio": 0.008, "top_area": "apps/web/src" }
+  },
+  "streak_days": 1,
+  "tweetable": "Sep 1: Gestor de Cobros — full-stack payment tracker shipped in one session, ~3.7k LOC (excl. lockfiles), 17 schema migrations, git history starts today."
+}
