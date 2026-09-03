@@ -1,4 +1,5 @@
-import { IsPhoneNumber, IsString, MinLength } from 'class-validator';
+import { IsString, MinLength } from 'class-validator';
+import { IsLatamPhoneNumber } from '../../common/validators/is-latam-phone-number.validator.js';
 
 export class CreateCompanyDto {
   @IsString()
@@ -9,6 +10,6 @@ export class CreateCompanyDto {
   @MinLength(2)
   address!: string;
 
-  @IsPhoneNumber()
+  @IsLatamPhoneNumber()
   cellphone!: string;
 }
