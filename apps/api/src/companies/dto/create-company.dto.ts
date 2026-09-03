@@ -1,4 +1,5 @@
-import { IsPhoneNumber, IsString, MinLength } from 'class-validator';
+import { IsString, MinLength } from 'class-validator';
+import { IsPhoneNumber } from '../../common/validators/is-phone-number.validator.js';
 
 export class CreateCompanyDto {
   @IsString()
