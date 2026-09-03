@@ -122,6 +122,7 @@ export class PaymentsService {
     const lines: Line[] = [
       { text: company.name, size: 11, bold: true, align: 'center' },
       { text: company.address, size: 8, align: 'center' },
+      { text: company.cellphone, size: 8, align: 'center' },
       { divider: true },
       { text: 'DETALLE DE PAGO', size: 9, bold: true, align: 'center' },
       { divider: true },

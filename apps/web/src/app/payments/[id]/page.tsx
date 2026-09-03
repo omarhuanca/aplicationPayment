@@ -90,6 +90,7 @@ export default function PaymentDetailPage() {
         <Section title="Empresa">
           <Field label="Nombre" value={company.name} />
           <Field label="Dirección" value={company.address} />
+          <Field label="Celular" value={company.cellphone} />
         </Section>
 
         <Section title="Cliente">
@@ -130,6 +131,7 @@ export default function PaymentDetailPage() {
         <div ref={receiptRef} className="w-[302px] bg-white p-3 font-mono text-black">
           <p className="text-center text-[13px] font-bold">{company.name}</p>
           <p className="text-center text-[10px]">{company.address}</p>
+          <p className="text-center text-[10px]">{company.cellphone}</p>
           <hr className="my-2 border-t border-black" />
           <p className="text-center text-[11px] font-bold">DETALLE DE PAGO</p>
           <hr className="my-2 border-t border-black" />
