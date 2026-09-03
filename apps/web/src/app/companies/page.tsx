@@ -13,19 +13,19 @@ export default function CompaniesPage() {
   const removeCompany = useRemoveCompany();
 
   const [showForm, setShowForm] = useState(false);
-  const [form, setForm] = useState({ name: "", address: "" });
+  const [form, setForm] = useState({ name: "", address: "", cellphone: "" });
   const [error, setError] = useState<string | null>(null);
 
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [editForm, setEditForm] = useState({ name: "", address: "" });
+  const [editForm, setEditForm] = useState({ name: "", address: "", cellphone: "" });
   const [editError, setEditError] = useState<string | null>(null);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
     try {
-      await createCompany.mutateAsync({ name: form.name, address: form.address });
-      setForm({ name: "", address: "" });
+      await createCompany.mutateAsync({ name: form.name, address: form.address, cellphone: form.cellphone });
+      setForm({ name: "", address: "", cellphone: "" });
       setShowForm(false);
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "No se pudo crear la empresa");
@@ -34,7 +34,7 @@ export default function CompaniesPage() {
 
   function startEditing(company: Company) {
     setEditingId(company.id);
-    setEditForm({ name: company.name, address: company.address ?? "" });
+    setEditForm({ name: company.name, address: company.address ?? "", cellphone: company.cellphone ?? "" });
     setEditError(null);
   }
 
@@ -53,7 +53,12 @@ export default function CompaniesPage() {
     e.preventDefault();
     setEditError(null);
     try {
-      await updateCompany.mutateAsync({ id, name: editForm.name, address: editForm.address || undefined });
+      await updateCompany.mutateAsync({
+        id,
+        name: editForm.name,
+        address: editForm.address || undefined,
+        cellphone: editForm.cellphone || undefined,
+      });
       setEditingId(null);
     } catch (err) {
       setEditError(err instanceof ApiError ? err.message : "No se pudo guardar el cambio");
@@ -77,7 +82,7 @@ export default function CompaniesPage() {
 
       {showForm && (
         <form onSubmit={handleSubmit} className="mb-6 space-y-3 rounded-lg border border-stone-200 bg-white p-4">
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-3">
             <input
               placeholder="Nombre de la empresa"
               required
@@ -90,6 +95,14 @@ export default function CompaniesPage() {
               required
               value={form.address}
               onChange={(e) => setForm((f) => ({ ...f, address: e.target.value }))}
+              className="input"
+            />
+            <input
+              type="tel"
+              placeholder="Celular (ej. +59171234567)"
+              required
+              value={form.cellphone}
+              onChange={(e) => setForm((f) => ({ ...f, cellphone: e.target.value }))}
               className="input"
             />
           </div>
@@ -115,7 +128,7 @@ export default function CompaniesPage() {
               editingId === company.id ? (
                 <li key={company.id} className="px-4 py-3">
                   <form onSubmit={(e) => handleEditSubmit(e, company.id)} className="space-y-2">
-                    <div className="grid gap-2 sm:grid-cols-2">
+                    <div className="grid gap-2 sm:grid-cols-3">
                       <input
                         required
                         value={editForm.name}
@@ -127,6 +140,14 @@ export default function CompaniesPage() {
                         required
                         value={editForm.address}
                         onChange={(e) => setEditForm((f) => ({ ...f, address: e.target.value }))}
+                        className="input"
+                      />
+                      <input
+                        type="tel"
+                        placeholder="Celular (ej. +59171234567)"
+                        required
+                        value={editForm.cellphone}
+                        onChange={(e) => setEditForm((f) => ({ ...f, cellphone: e.target.value }))}
                         className="input"
                       />
                     </div>
@@ -154,6 +175,7 @@ export default function CompaniesPage() {
                   <Link href={`/companies/${company.id}/dashboard`} className="flex-1">
                     <span className="font-medium text-stone-900">{company.name}</span>
                     <span className="ml-2 text-stone-500">{company.address}</span>
+                    <span className="ml-2 text-stone-400">{company.cellphone}</span>
                   </Link>
                   <div className="flex items-center gap-3">
                     <button

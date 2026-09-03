@@ -1,4 +1,4 @@
-import { IsString, MinLength } from 'class-validator';
+import { IsPhoneNumber, IsString, MinLength } from 'class-validator';
 
 export class CreateCompanyDto {
   @IsString()
@@ -8,4 +8,7 @@ export class CreateCompanyDto {
   @IsString()
   @MinLength(2)
   address!: string;
+
+  @IsPhoneNumber()
+  cellphone!: string;
 }

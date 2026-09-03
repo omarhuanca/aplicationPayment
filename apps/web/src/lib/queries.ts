@@ -30,7 +30,7 @@ export function useCompany(id: string) {
 export function useCreateCompany() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { name: string; address: string }) =>
+    mutationFn: (data: { name: string; address: string; cellphone: string }) =>
       apiFetch<Company>("/companies", { method: "POST", body: data }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["companies"] }),
   });
@@ -39,7 +39,7 @@ export function useCreateCompany() {
 export function useUpdateCompany() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ id, ...data }: { id: string; name?: string; address?: string }) =>
+    mutationFn: ({ id, ...data }: { id: string; name?: string; address?: string; cellphone?: string }) =>
       apiFetch<Company>(`/companies/${id}`, { method: "PATCH", body: data }),
     onSuccess: (_, { id }) => {
       qc.invalidateQueries({ queryKey: ["companies"] });

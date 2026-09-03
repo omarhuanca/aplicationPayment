@@ -1,0 +1,2 @@
+ALTER TABLE "Company" ADD COLUMN "cellphone" TEXT NOT NULL DEFAULT '';
+ALTER TABLE "Company" ALTER COLUMN "cellphone" DROP DEFAULT;

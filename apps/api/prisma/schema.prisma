@@ -39,6 +39,7 @@ model Company {
   id        String   @id @default(uuid())
   name      String   @unique @db.Citext
   address   String
+  cellphone String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
